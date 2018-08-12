@@ -16,13 +16,7 @@ class swiftSS: ScreenSaverView {
     var mazeScene: MazeScene?
 
     override init?(frame: NSRect, isPreview: Bool) {
-        
         super.init(frame: frame, isPreview: isPreview)
-        
-        //register fonts
-        
-        //force registering fonts using the other bundle
-        Bundle.registerFonts()
         
         //probably not needed, but cant hurt to check in case we re-use this code later
         for subview in self.subviews {

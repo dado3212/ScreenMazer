@@ -42,42 +42,67 @@ class MazeGenerator {
     ]
 
     func timeToArray() -> [[Int]] {
+        let defaults = DefaultsManager()
+        let clockSize = defaults.clockSize
+
         // Get the time in String format
         let dateFormatter : DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = DefaultsManager().hourClock ? "HH:mm" : "hh:mm"
+        dateFormatter.dateFormat = defaults.hourClock ? "HH:mm" : "hh:mm"
         let date = Date()
         let dateString = dateFormatter.string(from: date)
         print(dateString)
 
-        var output: [[Int]] = Array(repeating: [], count: 5)
+        var output: [[Int]] = Array(repeating: [], count: 5 * clockSize)
 
         // For each time block
         for (i, elem) in dateString.indices.enumerated() {
             let boolPattern = digits[String(dateString[elem])]!
             for (index, element) in boolPattern.indices.enumerated() {
-                output[index/3].append(Int(String(boolPattern[element]))!)
-                if (index % 3 == 2 && i != dateString.count-1) {
-                    output[index/3].append(0)
+                for _ in 1...clockSize {
+                    for j in 0...clockSize-1 {
+                        output[index/3 * clockSize + j].append(Int(String(boolPattern[element]))!)
+                    }
+                }
+                if ((index + 1) % (3) == 0 && i != dateString.count-1) {
+                    for _ in 1...clockSize {
+                        for j in 0...clockSize-1 {
+                            output[index/3 * clockSize + j].append(0)
+                        }
+                    }
                 }
             }
         }
 
+        var leftPad: [Int] = []
+        var rightPad: [Int] = []
+        for _ in 1...clockSize {
+            leftPad.append(1)
+            rightPad.append(0)
+        }
+        for _ in 1...clockSize {
+            leftPad.append(0)
+            rightPad.append(1)
+        }
         for i in 0...output.count-1 {
-            output[i].insert(contentsOf: [1, 0], at: 0)
-            output[i].append(contentsOf: [0, 1])
+            output[i].insert(contentsOf: leftPad, at: 0)
+            output[i].append(contentsOf: rightPad)
         }
 
-        // Top two lines
-        output.insert(Array(repeating: 0, count: output[0].count-2), at: 0)
-        output[0].insert(1, at: 0)
-        output[0].append(1)
-        output.insert(Array(repeating: 1, count: output[0].count), at: 0)
+        // Top lines
+        output.insert(Array(repeating: 0, count: output[0].count-2*2*clockSize), at: 0)
+        output[0].insert(contentsOf: leftPad, at: 0)
+        output[0].append(contentsOf: rightPad)
+        for _ in 1...clockSize {
+            output.insert(Array(repeating: 1, count: output[0].count), at: 0)
+        }
 
-        // Bottom two lines
-        output.append(Array(repeating: 0, count: output[0].count-2))
-        output[output.count-1].insert(1, at: 0)
-        output[output.count-1].append(1)
-        output.append(Array(repeating: 1, count: output[0].count))
+        // Bottom lines
+        output.append(Array(repeating: 0, count: output[0].count-2*2*clockSize))
+        output[output.count-1].insert(contentsOf: leftPad, at: 0)
+        output[output.count-1].append(contentsOf: rightPad)
+        for _ in 1...clockSize {
+            output.append(Array(repeating: 1, count: output[0].count))
+        }
 
         return output
     }
@@ -105,11 +130,16 @@ class MazeGenerator {
         // Center it
         let topOffset = rows / 2 - timeBools.count / 2
         let leftOffset = cols / 2 - timeBools[0].count / 2
-        for r in 0...timeBools.count-1 {
-            for c in 0...timeBools[0].count-1 {
-                blocked[rows-r-topOffset][c+leftOffset] = 2
-                if (timeBools[r][c] == 1) {
-                    orderChanged.append(Point(r: rows-r-topOffset, c: c+leftOffset))
+        if (topOffset >= 0 && leftOffset >= 0) {
+            for r in 0...timeBools.count-1 {
+                for c in 0...timeBools[0].count-1 {
+                    // If it won't crash
+                    if (rows - r - topOffset >= 0 && c + leftOffset < cols - 1) {
+                        blocked[rows-r-topOffset][c+leftOffset] = 2
+                        if (timeBools[r][c] == 1) {
+                            orderChanged.append(Point(r: rows-r-topOffset, c: c+leftOffset))
+                        }
+                    }
                 }
             }
         }

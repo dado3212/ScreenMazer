@@ -124,7 +124,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="92" id="u4M-IH-7QL"/>
                         </constraints>
-                        <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="3" doubleValue="2" tickMarkPosition="above" numberOfTickMarks="3" sliderType="linear" id="TGn-Hk-OEK"/>
+                        <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="3" doubleValue="2" tickMarkPosition="above" numberOfTickMarks="3" allowsTickMarkValuesOnly="YES" sliderType="linear" id="TGn-Hk-OEK"/>
                         <connections>
                             <action selector="clockSizeFinished:" target="-2" id="xwg-UP-A31"/>
                         </connections>
