@@ -7,10 +7,15 @@
 //
 
 import Foundation
+import GameplayKit
 
 struct Point {
     var r = 0
     var c = 0
+
+    func pt() -> int2 {
+        return int2(Int32(c), Int32(r))
+    }
 }
 
 extension String {
@@ -24,7 +29,7 @@ extension String {
 
 class MazeGenerator {
     let rows: Int, cols: Int
-    var blocked: [[Int]] = [] // 1 = true, 0 = false, 2 = NO
+    var blocked: [[Int]] = [] // 1 = WALL, 0 = SPACE, 2 = NO GO
     var orderChanged: [Point] = []
 
     var digits: [String: String] = [
@@ -118,14 +123,19 @@ class MazeGenerator {
     let LEFT = "←";
     let RIGHT = "→";
 
+    var start: int2 = int2(0,0)
+    var end: int2 = int2(5,5)
+
     init(_ rows: Int, _ cols: Int) {
         self.rows = rows
         self.cols = cols
 
         let startingR = 1
         let startingC = 0
+        start = Point(r: startingR, c: startingC).pt()
         let endingR = rows - (rows % 2 == 0 ? 3 : 2)
         let endingC = cols - (cols % 2 == 0 ? 2 : 1)
+        end = Point(r: endingR, c: endingC).pt()
 
         blocked = Array(repeating: Array(repeating: 1, count: cols), count: rows)
         blocked[startingR][startingC] = 0

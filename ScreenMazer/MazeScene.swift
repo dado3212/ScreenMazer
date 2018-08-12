@@ -11,6 +11,7 @@ import SpriteKit
 
 class MazeScene: SKScene {
     var maze: MazeGenerator?
+    var solved: MazeSolver?
     var rows: Int = 10
     var cols: Int = 10
     var index = 0
@@ -60,6 +61,7 @@ class MazeScene: SKScene {
         rows = Int(size.height / squareSize)
         cols = Int(size.width / squareSize)
         maze = MazeGenerator(rows, cols)
+        solved = MazeSolver(maze!)
 
         let bottomOffset = (size.height - CGFloat(rows) * squareSize) / 2
         let leftOffset = (size.width - CGFloat(cols) * squareSize) / 2
@@ -95,7 +97,12 @@ class MazeScene: SKScene {
                     let pos = maze!.orderChanged[index]
 
                     squares[pos.r][pos.c].removeAllActions()
-                    squares[pos.r][pos.c].run(SKAction.colorize(with: DefaultsManager().color, colorBlendFactor: 1, duration: 0.5))
+                    // squares[pos.r][pos.c].run(SKAction.colorize(with: DefaultsManager().color, colorBlendFactor: 1, duration: 0.5))
+                    if solved!.solution[pos.r][pos.c] == 4 {
+                        squares[pos.r][pos.c].run(SKAction.colorize(with: .white, colorBlendFactor: 1, duration: 0.5))
+                    } else {
+                        squares[pos.r][pos.c].run(SKAction.colorize(with: DefaultsManager().color, colorBlendFactor: 1, duration: 0.5))
+                    }
 
                     index += (i == stepSpeed ? 0 : 1)
                 }
@@ -111,6 +118,7 @@ class MazeScene: SKScene {
 
             // Update the maze
             maze = MazeGenerator(rows, cols)
+            solved = MazeSolver(maze!)
         } else if (index == maze!.orderChanged.count + Int(delay * 60)) {
             index = -1
         }
