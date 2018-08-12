@@ -10,6 +10,9 @@ import ScreenSaver
 import SpriteKit
 
 class swiftSS: ScreenSaverView {
+    var defaultsManager: DefaultsManager = DefaultsManager()
+    // lazy var sheetController: ConfigureSheetController = ConfigureSheetController()
+
     override init?(frame: NSRect, isPreview: Bool) {
         
         super.init(frame: frame, isPreview: isPreview)
@@ -38,6 +41,11 @@ class swiftSS: ScreenSaverView {
 
     override func hasConfigureSheet() -> Bool {
         return true
+    }
+
+    override func configureSheet() -> NSWindow? {
+        return nil
+        // return sheetController.window
     }
 
     required init?(coder: NSCoder) {

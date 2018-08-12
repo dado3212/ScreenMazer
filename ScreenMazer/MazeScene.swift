@@ -15,8 +15,8 @@ class MazeScene: SKScene {
     var cols: Int = 10
     var index = 0
     var squares: [[SKSpriteNode]] = []
-    var squareSize: CGFloat = 4
-    var duration: Int = 30
+    var squareSize: CGFloat = CGFloat(DefaultsManager().size)
+    var duration: Int = DefaultsManager().duration
     var stepSpeed: Int = 10
     var delay: Int = 2
 
@@ -87,7 +87,7 @@ class MazeScene: SKScene {
                 if (index < maze!.orderChanged.count) {
                     let pos = maze!.orderChanged[index]
 
-                    squares[pos.r][pos.c].run(SKAction.colorize(with: .gray, colorBlendFactor: 1, duration: 0.5))
+                    squares[pos.r][pos.c].run(SKAction.colorize(with: DefaultsManager().color, colorBlendFactor: 1, duration: 0.5))
 
                     index += 1
                 }

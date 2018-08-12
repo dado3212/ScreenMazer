@@ -15,6 +15,8 @@
 		A8B6824B212047760086CF0F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6FF6D25F1D1DBB1100F5A23C /* Info.plist */; };
 		A8B6825321204A2E0086CF0F /* thumbnail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A8B6825121204A2E0086CF0F /* thumbnail.jpg */; };
 		A8B6825421204A2E0086CF0F /* thumbnail@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A8B6825221204A2E0086CF0F /* thumbnail@2x.jpg */; };
+		A8B6825621204AFB0086CF0F /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6825521204AFB0086CF0F /* DefaultsManager.swift */; };
+		A8B6825821204B110086CF0F /* ConfigureSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6825721204B110086CF0F /* ConfigureSheetController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		A8B68249212029220086CF0F /* MazeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeGenerator.swift; sourceTree = "<group>"; };
 		A8B6825121204A2E0086CF0F /* thumbnail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thumbnail.jpg; sourceTree = "<group>"; };
 		A8B6825221204A2E0086CF0F /* thumbnail@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "thumbnail@2x.jpg"; sourceTree = "<group>"; };
+		A8B6825521204AFB0086CF0F /* DefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
+		A8B6825721204B110086CF0F /* ConfigureSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureSheetController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,8 @@
 				6FF6D25F1D1DBB1100F5A23C /* Info.plist */,
 				A8B68247212024830086CF0F /* MazeScene.swift */,
 				A8B68249212029220086CF0F /* MazeGenerator.swift */,
+				A8B6825521204AFB0086CF0F /* DefaultsManager.swift */,
+				A8B6825721204B110086CF0F /* ConfigureSheetController.swift */,
 				6FD2A7C01D21DCF700939756 /* swiftSS.swift */,
 			);
 			path = ScreenMazer;
@@ -160,8 +166,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FD2A7D91D26E45C00939756 /* NSBundleExtensions.swift in Sources */,
 				6FD2A7C11D21DCF700939756 /* swiftSS.swift in Sources */,
+				6FD2A7D91D26E45C00939756 /* NSBundleExtensions.swift in Sources */,
+				A8B6825621204AFB0086CF0F /* DefaultsManager.swift in Sources */,
+				A8B6825821204B110086CF0F /* ConfigureSheetController.swift in Sources */,
 				A8B6824A212029220086CF0F /* MazeGenerator.swift in Sources */,
 				A8B68248212024830086CF0F /* MazeScene.swift in Sources */,
 				6FD2A7DA1D26E45C00939756 /* NSImageExtensions.swift in Sources */,
