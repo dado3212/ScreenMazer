@@ -1,9 +1,9 @@
 //
 //  swiftSS.swift
-//  MySwiftScreenSaver
+//  ScreenMazer
 //
-//  Created by Hill, Michael on 6/27/16.
-//  Copyright © 2016 Hill, Michael. All rights reserved.
+//  Created by Alex Beals on 8/12/18.
+//  Copyright © 2018 Beals, Alex. All rights reserved.
 //
 
 import ScreenSaver
@@ -32,16 +32,12 @@ class swiftSS: ScreenSaverView {
         scene.scaleMode = .aspectFill
         view.presentScene(scene)
 
-        //Add something to it!
-        
-//
-//        let redBox: SKSpriteNode = SKSpriteNode(color: .red, size:CGSize(width: 300, height: 300))
-//        redBox.position = CGPoint(x: 512, y: 384)
-//        redBox.run(SKAction.repeatForever(SKAction.rotate(byAngle: 6, duration: 2)))
-//        scene.addChild(redBox)
-
         //add it in as a subview
         self.addSubview(view)
+    }
+
+    override func hasConfigureSheet() -> Bool {
+        return true
     }
 
     required init?(coder: NSCoder) {

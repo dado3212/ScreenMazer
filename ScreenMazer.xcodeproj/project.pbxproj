@@ -10,17 +10,16 @@
 		6FD2A7C11D21DCF700939756 /* swiftSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2A7C01D21DCF700939756 /* swiftSS.swift */; };
 		6FD2A7D91D26E45C00939756 /* NSBundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2A7D61D26E45C00939756 /* NSBundleExtensions.swift */; };
 		6FD2A7DA1D26E45C00939756 /* NSImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2A7D71D26E45C00939756 /* NSImageExtensions.swift */; };
-		6FD2A7DB1D26E45C00939756 /* SCNSceneExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2A7D81D26E45C00939756 /* SCNSceneExtension.swift */; };
 		A8B68248212024830086CF0F /* MazeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B68247212024830086CF0F /* MazeScene.swift */; };
 		A8B6824A212029220086CF0F /* MazeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B68249212029220086CF0F /* MazeGenerator.swift */; };
+		A8B6824B212047760086CF0F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6FF6D25F1D1DBB1100F5A23C /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6FD2A7C01D21DCF700939756 /* swiftSS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = swiftSS.swift; sourceTree = "<group>"; };
 		6FD2A7D61D26E45C00939756 /* NSBundleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundleExtensions.swift; sourceTree = "<group>"; };
 		6FD2A7D71D26E45C00939756 /* NSImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImageExtensions.swift; sourceTree = "<group>"; };
-		6FD2A7D81D26E45C00939756 /* SCNSceneExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCNSceneExtension.swift; sourceTree = "<group>"; };
-		6FF6D2581D1DBB1100F5A23C /* MySwiftScreenSaver.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MySwiftScreenSaver.saver; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FF6D2581D1DBB1100F5A23C /* ScreenMazer.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScreenMazer.saver; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FF6D25F1D1DBB1100F5A23C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8B68247212024830086CF0F /* MazeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeScene.swift; sourceTree = "<group>"; };
 		A8B68249212029220086CF0F /* MazeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeGenerator.swift; sourceTree = "<group>"; };
@@ -40,7 +39,7 @@
 		6FF6D24E1D1DBB1100F5A23C = {
 			isa = PBXGroup;
 			children = (
-				6FF6D25A1D1DBB1100F5A23C /* MySwiftScreenSaver */,
+				6FF6D25A1D1DBB1100F5A23C /* ScreenMazer */,
 				6FF6D2591D1DBB1100F5A23C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,23 +47,22 @@
 		6FF6D2591D1DBB1100F5A23C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6FF6D2581D1DBB1100F5A23C /* MySwiftScreenSaver.saver */,
+				6FF6D2581D1DBB1100F5A23C /* ScreenMazer.saver */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6FF6D25A1D1DBB1100F5A23C /* MySwiftScreenSaver */ = {
+		6FF6D25A1D1DBB1100F5A23C /* ScreenMazer */ = {
 			isa = PBXGroup;
 			children = (
 				6FD2A7D61D26E45C00939756 /* NSBundleExtensions.swift */,
 				6FD2A7D71D26E45C00939756 /* NSImageExtensions.swift */,
-				6FD2A7D81D26E45C00939756 /* SCNSceneExtension.swift */,
 				6FF6D25F1D1DBB1100F5A23C /* Info.plist */,
 				A8B68247212024830086CF0F /* MazeScene.swift */,
 				A8B68249212029220086CF0F /* MazeGenerator.swift */,
 				6FD2A7C01D21DCF700939756 /* swiftSS.swift */,
 			);
-			path = MySwiftScreenSaver;
+			path = ScreenMazer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,9 +78,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		6FF6D2571D1DBB1100F5A23C /* MySwiftScreenSaver */ = {
+		6FF6D2571D1DBB1100F5A23C /* ScreenMazer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6FF6D2621D1DBB1100F5A23C /* Build configuration list for PBXNativeTarget "MySwiftScreenSaver" */;
+			buildConfigurationList = 6FF6D2621D1DBB1100F5A23C /* Build configuration list for PBXNativeTarget "ScreenMazer" */;
 			buildPhases = (
 				6FF6D2531D1DBB1100F5A23C /* Sources */,
 				6FF6D2541D1DBB1100F5A23C /* Frameworks */,
@@ -93,9 +91,9 @@
 			);
 			dependencies = (
 			);
-			name = MySwiftScreenSaver;
+			name = ScreenMazer;
 			productName = MySwiftScreenSaver;
-			productReference = 6FF6D2581D1DBB1100F5A23C /* MySwiftScreenSaver.saver */;
+			productReference = 6FF6D2581D1DBB1100F5A23C /* ScreenMazer.saver */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -105,7 +103,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = "Hill, Michael";
+				ORGANIZATIONNAME = "Beals, Alex";
 				TargetAttributes = {
 					6FF6D2571D1DBB1100F5A23C = {
 						CreatedOnToolsVersion = 7.3;
@@ -113,7 +111,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6FF6D2521D1DBB1100F5A23C /* Build configuration list for PBXProject "MySwiftScreenSaver" */;
+			buildConfigurationList = 6FF6D2521D1DBB1100F5A23C /* Build configuration list for PBXProject "ScreenMazer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -125,7 +123,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6FF6D2571D1DBB1100F5A23C /* MySwiftScreenSaver */,
+				6FF6D2571D1DBB1100F5A23C /* ScreenMazer */,
 			);
 		};
 /* End PBXProject section */
@@ -135,6 +133,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8B6824B212047760086CF0F /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,7 +148,6 @@
 				6FD2A7C11D21DCF700939756 /* swiftSS.swift in Sources */,
 				A8B6824A212029220086CF0F /* MazeGenerator.swift in Sources */,
 				A8B68248212024830086CF0F /* MazeScene.swift in Sources */,
-				6FD2A7DB1D26E45C00939756 /* SCNSceneExtension.swift in Sources */,
 				6FD2A7DA1D26E45C00939756 /* NSImageExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,10 +247,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MySwiftScreenSaver/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ScreenMazer/Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mikehill.MySwiftScreenSaver;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexbeals.ScreenMazer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -267,10 +265,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MySwiftScreenSaver/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ScreenMazer/Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mikehill.MySwiftScreenSaver;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexbeals.ScreenMazer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
@@ -281,7 +279,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6FF6D2521D1DBB1100F5A23C /* Build configuration list for PBXProject "MySwiftScreenSaver" */ = {
+		6FF6D2521D1DBB1100F5A23C /* Build configuration list for PBXProject "ScreenMazer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6FF6D2601D1DBB1100F5A23C /* Debug */,
@@ -290,7 +288,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6FF6D2621D1DBB1100F5A23C /* Build configuration list for PBXNativeTarget "MySwiftScreenSaver" */ = {
+		6FF6D2621D1DBB1100F5A23C /* Build configuration list for PBXNativeTarget "ScreenMazer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6FF6D2631D1DBB1100F5A23C /* Debug */,

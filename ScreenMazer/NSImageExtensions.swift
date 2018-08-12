@@ -1,6 +1,6 @@
 //
 //  NSImageExtensions.swift
-//  MySwiftScreenSaver
+//  ScreenMazer
 //
 //  Created by Hill, Michael on 7/1/16.
 //  Copyright © 2016 Hill, Michael. All rights reserved.

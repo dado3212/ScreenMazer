@@ -1,9 +1,9 @@
 //
 //  MazeScene.swift
-//  MySwiftScreenSaver
+//  ScreenMazer
 //
 //  Created by Alex Beals on 8/12/18.
-//  Copyright © 2018 Hill, Michael. All rights reserved.
+//  Copyright © 2018 Beals, Alex. All rights reserved.
 //
 
 import Foundation
