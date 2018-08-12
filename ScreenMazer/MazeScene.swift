@@ -117,8 +117,11 @@ class MazeScene: SKScene {
         }
 
         // Calculate step speed
-        let timeSinceLastUpdate = currentTime - lastUpdateTime
+        var timeSinceLastUpdate = currentTime - lastUpdateTime
         lastUpdateTime = currentTime
+        if (timeSinceLastUpdate > 1) {
+            timeSinceLastUpdate = 1.0/60.0
+        }
         var stepSpeed = Int(d * timeSinceLastUpdate)
         if (stepSpeed < 1) { stepSpeed = 1 }
 
