@@ -7,124 +7,105 @@
 //
 
 import Foundation
-import GameplayKit
 
-struct Point {
-    var r = 0
-    var c = 0
+var digits: [String: String] = [
+    "0": "111101101101111",
+    "1": "010010010010010",
+    "2": "111001111100111",
+    "3": "111001011001111",
+    "4": "101101111001001",
+    "5": "111100111001111",
+    "6": "111100111101111",
+    "7": "111001001001001",
+    "8": "111101111101111",
+    "9": "111101111001001",
+    ":": "000010000010000",
+]
 
-    func pt() -> int2 {
-        return int2(Int32(c), Int32(r))
+func timeToArray() -> [[Int]] {
+    let defaults = DefaultsManager()
+    let clockSize = defaults.clockSize
+
+    // Get the time in String format
+    let dateFormatter : DateFormatter = DateFormatter()
+    dateFormatter.dateFormat = defaults.hourClock ? "HH:mm" : "hh:mm"
+    let date = Date()
+    let dateString = dateFormatter.string(from: date)
+    print(dateString)
+
+    var output: [[Int]] = Array(repeating: [], count: 5 * clockSize)
+
+    // For each time block
+    for (i, elem) in dateString.indices.enumerated() {
+        let boolPattern = digits[String(dateString[elem])]!
+        for (index, element) in boolPattern.indices.enumerated() {
+            for _ in 1...clockSize {
+                for j in 0...clockSize-1 {
+                    output[index/3 * clockSize + j].append(Int(String(boolPattern[element]))!)
+                }
+            }
+            if ((index + 1) % (3) == 0 && i != dateString.count-1) {
+                for _ in 1...clockSize {
+                    for j in 0...clockSize-1 {
+                        output[index/3 * clockSize + j].append(0)
+                    }
+                }
+            }
+        }
     }
-}
 
-extension String {
-    func random() -> String {
-        let rand = Int(arc4random_uniform(UInt32(self.count)))
-        let start = self.index(self.startIndex, offsetBy: rand)
-        let end = self.index(self.startIndex, offsetBy: rand+1)
-        return String(self[start..<end])
+    var leftPad: [Int] = []
+    var rightPad: [Int] = []
+    for _ in 1...clockSize {
+        leftPad.append(1)
+        rightPad.append(0)
     }
+    for _ in 1...clockSize {
+        leftPad.append(0)
+        rightPad.append(1)
+    }
+    for i in 0...output.count-1 {
+        output[i].insert(contentsOf: leftPad, at: 0)
+        output[i].append(contentsOf: rightPad)
+    }
+
+    // Top lines
+    var intermediary = Array(repeating: 0, count: output[0].count-2*2*clockSize)
+    intermediary.insert(contentsOf: leftPad, at: 0)
+    intermediary.append(contentsOf: rightPad)
+    for _ in 1...clockSize {
+        output.insert(intermediary, at: 0)
+    }
+    for _ in 1...clockSize {
+        output.insert(Array(repeating: 1, count: output[0].count), at: 0)
+    }
+
+    // Bottom lines
+    intermediary = Array(repeating: 0, count: output[0].count-2*2*clockSize)
+    intermediary.insert(contentsOf: leftPad, at: 0)
+    intermediary.append(contentsOf: rightPad)
+    for _ in 1...clockSize {
+        output.append(intermediary)
+    }
+    for _ in 1...clockSize {
+        output.append(Array(repeating: 1, count: output[0].count))
+    }
+
+    return output
 }
 
 class MazeGenerator {
     let rows: Int, cols: Int
     var blocked: [[Int]] = [] // 1 = WALL, 0 = SPACE, 2 = NO GO
-    var orderChanged: [Point] = []
-
-    var digits: [String: String] = [
-        "0": "111101101101111",
-        "1": "010010010010010",
-        "2": "111001111100111",
-        "3": "111001011001111",
-        "4": "101101111001001",
-        "5": "111100111001111",
-        "6": "111100111101111",
-        "7": "111001001001001",
-        "8": "111101111101111",
-        "9": "111101111001001",
-        ":": "000010000010000",
-    ]
-
-    func timeToArray() -> [[Int]] {
-        let defaults = DefaultsManager()
-        let clockSize = defaults.clockSize
-
-        // Get the time in String format
-        let dateFormatter : DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = defaults.hourClock ? "HH:mm" : "hh:mm"
-        let date = Date()
-        let dateString = dateFormatter.string(from: date)
-        print(dateString)
-
-        var output: [[Int]] = Array(repeating: [], count: 5 * clockSize)
-
-        // For each time block
-        for (i, elem) in dateString.indices.enumerated() {
-            let boolPattern = digits[String(dateString[elem])]!
-            for (index, element) in boolPattern.indices.enumerated() {
-                for _ in 1...clockSize {
-                    for j in 0...clockSize-1 {
-                        output[index/3 * clockSize + j].append(Int(String(boolPattern[element]))!)
-                    }
-                }
-                if ((index + 1) % (3) == 0 && i != dateString.count-1) {
-                    for _ in 1...clockSize {
-                        for j in 0...clockSize-1 {
-                            output[index/3 * clockSize + j].append(0)
-                        }
-                    }
-                }
-            }
-        }
-
-        var leftPad: [Int] = []
-        var rightPad: [Int] = []
-        for _ in 1...clockSize {
-            leftPad.append(1)
-            rightPad.append(0)
-        }
-        for _ in 1...clockSize {
-            leftPad.append(0)
-            rightPad.append(1)
-        }
-        for i in 0...output.count-1 {
-            output[i].insert(contentsOf: leftPad, at: 0)
-            output[i].append(contentsOf: rightPad)
-        }
-
-        // Top lines
-        var intermediary = Array(repeating: 0, count: output[0].count-2*2*clockSize)
-        intermediary.insert(contentsOf: leftPad, at: 0)
-        intermediary.append(contentsOf: rightPad)
-        for _ in 1...clockSize {
-            output.insert(intermediary, at: 0)
-        }
-        for _ in 1...clockSize {
-            output.insert(Array(repeating: 1, count: output[0].count), at: 0)
-        }
-
-        // Bottom lines
-        intermediary = Array(repeating: 0, count: output[0].count-2*2*clockSize)
-        intermediary.insert(contentsOf: leftPad, at: 0)
-        intermediary.append(contentsOf: rightPad)
-        for _ in 1...clockSize {
-            output.append(intermediary)
-        }
-        for _ in 1...clockSize {
-            output.append(Array(repeating: 1, count: output[0].count))
-        }
-
-        return output
-    }
+    var orderChanged: [Square] = []
 
     let UP = "↑";
     let DOWN = "↓";
     let LEFT = "←";
     let RIGHT = "→";
 
-    var start: int2 = int2(0,0)
-    var end: int2 = int2(5,5)
+    var start: Square
+    var end: Square
 
     init(_ rows: Int, _ cols: Int) {
         self.rows = rows
@@ -132,10 +113,11 @@ class MazeGenerator {
 
         let startingR = 1
         let startingC = 0
-        start = Point(r: startingR, c: startingC).pt()
+        start = Square(startingR, startingC)
+
         let endingR = rows - (rows % 2 == 0 ? 3 : 2)
         let endingC = cols - (cols % 2 == 0 ? 2 : 1)
-        end = Point(r: endingR, c: endingC).pt()
+        end = Square(endingR, endingC)
 
         blocked = Array(repeating: Array(repeating: 1, count: cols), count: rows)
         blocked[startingR][startingC] = 0
@@ -153,7 +135,7 @@ class MazeGenerator {
                     if (rows - r - topOffset >= 0 && c + leftOffset < cols - 1) {
                         blocked[rows-r-topOffset][c+leftOffset] = 2
                         if (timeBools[r][c] == 1) {
-                            orderChanged.append(Point(r: rows-r-topOffset, c: c+leftOffset))
+                            orderChanged.append(Square(rows-r-topOffset, c+leftOffset))
                         }
                     }
                 }
@@ -162,17 +144,15 @@ class MazeGenerator {
 
         // Create the maze
         createMaze()
-        orderChanged.append(Point(r: startingR, c: startingC))
-        orderChanged.append(Point(r: endingR, c: endingC))
+        orderChanged.append(start)
+        orderChanged.append(end)
     }
 
     func createMaze() {
-        var back: Int
         var possibleDirections: String
-        var pos: Point = Point(r: 1, c: 1)
+        var pos: Square = start
 
-        var moves: [Int] = []
-        moves.append(pos.r + pos.c * cols)
+        var moves: [Square] = [pos]
 
         while (moves.count > 0) {
             possibleDirections = ""
@@ -199,33 +179,49 @@ class MazeGenerator {
                 case UP: // North
                     blocked[pos.r - 1][pos.c] = 0
                     blocked[pos.r - 2][pos.c] = 0
-                    orderChanged.append(Point(r: pos.r - 1, c: pos.c))
-                    orderChanged.append(Point(r: pos.r - 2, c: pos.c))
-                    pos.r -= 2;
+                    let first = Square(pos.r - 1, pos.c)
+                    pos.nextTo(first)
+                    let second = Square(pos.r - 2, pos.c)
+                    first.nextTo(second)
+                    orderChanged.append(first)
+                    orderChanged.append(second)
+                    pos = second
                     break;
 
                 case DOWN: // South
                     blocked[pos.r + 1][pos.c] = 0
                     blocked[pos.r + 2][pos.c] = 0
-                    orderChanged.append(Point(r: pos.r + 1, c: pos.c))
-                    orderChanged.append(Point(r: pos.r + 2, c: pos.c))
-                    pos.r += 2
+                    let first = Square(pos.r + 1, pos.c)
+                    pos.nextTo(first)
+                    let second = Square(pos.r + 2, pos.c)
+                    first.nextTo(second)
+                    orderChanged.append(first)
+                    orderChanged.append(second)
+                    pos = second
                     break;
 
                 case LEFT: // West
                     blocked[pos.r][pos.c - 1] = 0
                     blocked[pos.r][pos.c - 2] = 0
-                    orderChanged.append(Point(r: pos.r, c: pos.c - 1))
-                    orderChanged.append(Point(r: pos.r, c: pos.c - 2))
-                    pos.c -= 2
+                    let first = Square(pos.r, pos.c - 1)
+                    pos.nextTo(first)
+                    let second = Square(pos.r, pos.c - 2)
+                    first.nextTo(second)
+                    orderChanged.append(first)
+                    orderChanged.append(second)
+                    pos = second
                     break;
 
                 case RIGHT: // East
                     blocked[pos.r][pos.c + 1] = 0
                     blocked[pos.r][pos.c + 2] = 0
-                    orderChanged.append(Point(r: pos.r, c: pos.c + 1))
-                    orderChanged.append(Point(r: pos.r, c: pos.c + 2))
-                    pos.c += 2
+                    let first = Square(pos.r, pos.c + 1)
+                    pos.nextTo(first)
+                    let second = Square(pos.r, pos.c + 2)
+                    first.nextTo(second)
+                    orderChanged.append(first)
+                    orderChanged.append(second)
+                    pos = second
                     break;
 
                 default:
@@ -233,12 +229,10 @@ class MazeGenerator {
                 }
 
                 // Add a new possible movement
-                moves.append(pos.r + (pos.c * cols))
+                moves.append(pos)
             } else {
                 // There are no more possible movements
-                back = moves.removeLast()
-                pos.r = back % cols
-                pos.c = back / cols
+                pos = moves.removeLast()
             }
         }
     }

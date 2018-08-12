@@ -9,36 +9,60 @@
 import Foundation
 import GameplayKit
 
+class Path {
+    public let cumulativeWeight: Int
+    public let node: Square
+    public let previousPath: Path?
+
+    init(to node: Square, previousPath path: Path? = nil) {
+        if
+            let previousPath = path {
+            self.cumulativeWeight = 1 + previousPath.cumulativeWeight
+        } else {
+            self.cumulativeWeight = 0
+        }
+
+        self.node = node
+        self.previousPath = path
+    }
+}
+
 class MazeSolver {
 
-    var solution: [Point] = []
+    var solution: [Square] = []
 
     init(_ maze: MazeGenerator) {
-        // Build the GKGraph from the finished maze
-        let mazeGraph = GKGridGraph(fromGridStartingAt: int2(0,0), width: Int32(maze.cols), height: Int32(maze.rows), diagonalsAllowed: false)
+        var end = Square(maze.end.r, maze.end.c - 2)
+        var p = shortestPath(source: maze.start, destination: end)
+        while (p != nil) {
+            solution.insert(p!.node, at: 0)
+            p = p!.previousPath
+        }
+    }
 
-        // Remove anything that's not on the valid path
-        var toRemove: [GKGridGraphNode] = []
-        for row in 0...maze.blocked.count-1 {
-            for col in 0...maze.blocked[0].count-1 {
-                if maze.blocked[row][col] != 0 {
-                    toRemove.append(mazeGraph.node(atGridPosition: int2(Int32(col),Int32(row)))!)
-                }
+    func shortestPath(source: Square, destination: Square) -> Path? {
+        var frontier: [Path] = [] {
+            didSet { frontier.sort { return $0.cumulativeWeight < $1.cumulativeWeight } } // the frontier has to be always ordered
+        }
+
+        frontier.append(Path(to: source)) // the frontier is made by a path that starts nowhere and ends in the source
+
+        var visited: [Square] = []
+
+        while !frontier.isEmpty {
+            let cheapestPathInFrontier = frontier.removeFirst() // getting the cheapest path available
+            guard !visited.contains(cheapestPathInFrontier.node) else { continue } // making sure we haven't visited the node already
+
+            if cheapestPathInFrontier.node === destination {
+                return cheapestPathInFrontier // found the cheapest path 😎
             }
-        }
-        return
 
-        // mazeGraph.remove(toRemove)
+            visited.append(cheapestPathInFrontier.node)
 
-
-
-        // Get the shortest path
-        let shortestPath = mazeGraph.findPath(from: mazeGraph.node(atGridPosition: maze.start)!, to: mazeGraph.node(atGridPosition: maze.end)!)
-
-        // Build it into the solution (4 is correct)
-        for node in shortestPath {
-            let pt = (node as! GKGridGraphNode).gridPosition
-            solution.append(Point(r: Int(pt.y), c: Int(pt.x)))
-        }
+            for s in cheapestPathInFrontier.node.adjacent where !visited.contains(s) { // adding new paths to our frontier
+                frontier.append(Path(to: s, previousPath: cheapestPathInFrontier))
+            }
+        } // end while
+        return nil // we didn't find a path 😣
     }
 }

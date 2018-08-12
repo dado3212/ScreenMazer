@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6FD2A7C11D21DCF700939756 /* swiftSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2A7C01D21DCF700939756 /* swiftSS.swift */; };
+		A89B9C502120CF4700CE35AC /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89B9C4F2120CF4700CE35AC /* Square.swift */; };
+		A89B9C522120CFFA00CE35AC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89B9C512120CFFA00CE35AC /* Extensions.swift */; };
 		A8B68248212024830086CF0F /* MazeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B68247212024830086CF0F /* MazeScene.swift */; };
 		A8B6824A212029220086CF0F /* MazeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B68249212029220086CF0F /* MazeGenerator.swift */; };
 		A8B6824B212047760086CF0F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6FF6D25F1D1DBB1100F5A23C /* Info.plist */; };
@@ -23,6 +25,8 @@
 		6FD2A7C01D21DCF700939756 /* swiftSS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = swiftSS.swift; sourceTree = "<group>"; };
 		6FF6D2581D1DBB1100F5A23C /* ScreenMazer.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScreenMazer.saver; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FF6D25F1D1DBB1100F5A23C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A89B9C4F2120CF4700CE35AC /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
+		A89B9C512120CFFA00CE35AC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A8B68247212024830086CF0F /* MazeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeScene.swift; sourceTree = "<group>"; };
 		A8B68249212029220086CF0F /* MazeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeGenerator.swift; sourceTree = "<group>"; };
 		A8B6825121204A2E0086CF0F /* thumbnail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thumbnail.jpg; sourceTree = "<group>"; };
@@ -67,6 +71,8 @@
 				6FF6D25F1D1DBB1100F5A23C /* Info.plist */,
 				A8B68247212024830086CF0F /* MazeScene.swift */,
 				A8B68249212029220086CF0F /* MazeGenerator.swift */,
+				A89B9C512120CFFA00CE35AC /* Extensions.swift */,
+				A89B9C4F2120CF4700CE35AC /* Square.swift */,
 				A8B6825B2120BB940086CF0F /* MazeSolver.swift */,
 				A8B6825521204AFB0086CF0F /* DefaultsManager.swift */,
 				A8B6825721204B110086CF0F /* ConfigureSheetController.swift */,
@@ -170,6 +176,8 @@
 				6FD2A7C11D21DCF700939756 /* swiftSS.swift in Sources */,
 				A8B6825C2120BB940086CF0F /* MazeSolver.swift in Sources */,
 				A8B6825621204AFB0086CF0F /* DefaultsManager.swift in Sources */,
+				A89B9C522120CFFA00CE35AC /* Extensions.swift in Sources */,
+				A89B9C502120CF4700CE35AC /* Square.swift in Sources */,
 				A8B6825821204B110086CF0F /* ConfigureSheetController.swift in Sources */,
 				A8B6824A212029220086CF0F /* MazeGenerator.swift in Sources */,
 				A8B68248212024830086CF0F /* MazeScene.swift in Sources */,
