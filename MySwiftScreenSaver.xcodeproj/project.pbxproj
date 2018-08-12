@@ -13,6 +13,7 @@
 		6FD2A7D91D26E45C00939756 /* NSBundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2A7D61D26E45C00939756 /* NSBundleExtensions.swift */; };
 		6FD2A7DA1D26E45C00939756 /* NSImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2A7D71D26E45C00939756 /* NSImageExtensions.swift */; };
 		6FD2A7DB1D26E45C00939756 /* SCNSceneExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2A7D81D26E45C00939756 /* SCNSceneExtension.swift */; };
+		A838F578211FF9FC0000DF56 /* Maze.swift in Sources */ = {isa = PBXBuildFile; fileRef = A838F577211FF9FC0000DF56 /* Maze.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		6FD2A7D81D26E45C00939756 /* SCNSceneExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCNSceneExtension.swift; sourceTree = "<group>"; };
 		6FF6D2581D1DBB1100F5A23C /* MySwiftScreenSaver.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MySwiftScreenSaver.saver; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FF6D25F1D1DBB1100F5A23C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A838F577211FF9FC0000DF56 /* Maze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Maze.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				6FD2A7D31D26E2EF00939756 /* texture.png */,
 				6FF6D25F1D1DBB1100F5A23C /* Info.plist */,
 				6FD2A7C01D21DCF700939756 /* swiftSS.swift */,
+				A838F577211FF9FC0000DF56 /* Maze.swift */,
 			);
 			path = MySwiftScreenSaver;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 				6FD2A7DB1D26E45C00939756 /* SCNSceneExtension.swift in Sources */,
 				6FD2A7DA1D26E45C00939756 /* NSImageExtensions.swift in Sources */,
 				6FD2A7C11D21DCF700939756 /* swiftSS.swift in Sources */,
+				A838F578211FF9FC0000DF56 /* Maze.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
