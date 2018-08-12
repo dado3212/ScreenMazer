@@ -15,8 +15,8 @@ class MazeScene: SKScene {
     var cols: Int = 10
     var index = 0
     var squares: [[SKSpriteNode]] = []
-    var squareSize: CGFloat = 20
-    var stepSpeed: Int = 3
+    var squareSize: CGFloat = 10
+    var stepSpeed: Int = 4
     var delay: Int = 2
 
     // MARK: -View Class Methods
