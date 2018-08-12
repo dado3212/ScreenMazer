@@ -107,7 +107,7 @@ class MazeGenerator {
         let leftOffset = cols / 2 - timeBools[0].count / 2
         for r in 0...timeBools.count-1 {
             for c in 0...timeBools[0].count-1 {
-                blocked[rows-r-topOffset][c+leftOffset] = 2 //timeBools[r][c]
+                blocked[rows-r-topOffset][c+leftOffset] = 2
                 if (timeBools[r][c] == 1) {
                     orderChanged.append(Point(r: rows-r-topOffset, c: c+leftOffset))
                 }
