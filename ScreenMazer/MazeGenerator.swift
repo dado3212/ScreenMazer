@@ -89,17 +89,23 @@ class MazeGenerator {
         }
 
         // Top lines
-        output.insert(Array(repeating: 0, count: output[0].count-2*2*clockSize), at: 0)
-        output[0].insert(contentsOf: leftPad, at: 0)
-        output[0].append(contentsOf: rightPad)
+        var intermediary = Array(repeating: 0, count: output[0].count-2*2*clockSize)
+        intermediary.insert(contentsOf: leftPad, at: 0)
+        intermediary.append(contentsOf: rightPad)
+        for _ in 1...clockSize {
+            output.insert(intermediary, at: 0)
+        }
         for _ in 1...clockSize {
             output.insert(Array(repeating: 1, count: output[0].count), at: 0)
         }
 
         // Bottom lines
-        output.append(Array(repeating: 0, count: output[0].count-2*2*clockSize))
-        output[output.count-1].insert(contentsOf: leftPad, at: 0)
-        output[output.count-1].append(contentsOf: rightPad)
+        intermediary = Array(repeating: 0, count: output[0].count-2*2*clockSize)
+        intermediary.insert(contentsOf: leftPad, at: 0)
+        intermediary.append(contentsOf: rightPad)
+        for _ in 1...clockSize {
+            output.append(intermediary)
+        }
         for _ in 1...clockSize {
             output.append(Array(repeating: 1, count: output[0].count))
         }
@@ -118,8 +124,8 @@ class MazeGenerator {
 
         let startingR = 1
         let startingC = 0
-        let endingR = rows - 2
-        let endingC = cols - 1
+        let endingR = rows - (rows % 2 == 0 ? 3 : 2)
+        let endingC = cols - (cols % 2 == 0 ? 2 : 1)
 
         blocked = Array(repeating: Array(repeating: 1, count: cols), count: rows)
         blocked[startingR][startingC] = 0

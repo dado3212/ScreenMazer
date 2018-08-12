@@ -39,7 +39,7 @@ class DefaultsManager {
             setAttribute(newSize, key: "mazeSize")
         }
         get {
-            return getMazeSize() ?? 10.0
+            return getMazeSize() ?? 7.0
         }
     }
 
@@ -48,7 +48,7 @@ class DefaultsManager {
             setAttribute(newSize, key: "clockSize")
         }
         get {
-            return getClockSize() ?? 2
+            return getClockSize() ?? 1
         }
     }
 

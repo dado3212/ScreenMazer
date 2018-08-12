@@ -18,7 +18,7 @@ class MazeScene: SKScene {
     var squareSize: CGFloat = CGFloat(DefaultsManager().mazeSize)
     var duration: Int = DefaultsManager().duration
     var stepSpeed: Int = 10
-    var delay: Int = 2
+    var delay: Double = 2.5
     var isPreview: Bool = false
 
     // MARK: -View Class Methods
@@ -61,7 +61,7 @@ class MazeScene: SKScene {
         cols = Int(size.width / squareSize)
         maze = MazeGenerator(rows, cols)
 
-        stepSpeed = (maze!.orderChanged.count) / (duration * 40)
+        stepSpeed = (rows * cols) / (duration * 40)
         if stepSpeed < 1 { stepSpeed = 1 }
 
         for r in 0...rows-1 {
@@ -84,32 +84,35 @@ class MazeScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         if (maze == nil) {
             return
-        } else if (index >= maze!.orderChanged.count && index < maze!.orderChanged.count + delay * 60) {
-            index += 1
-        } else if (index >= maze!.orderChanged.count + delay * 60) {
+        }
+
+        if (index < maze!.orderChanged.count) {
+            for i in 1...stepSpeed {
+                if (index < maze!.orderChanged.count) {
+                    let pos = maze!.orderChanged[index]
+
+                    squares[pos.r][pos.c].removeAllActions()
+                    squares[pos.r][pos.c].run(SKAction.colorize(with: DefaultsManager().color, colorBlendFactor: 1, duration: 0.5))
+
+                    index += (i == stepSpeed ? 0 : 1)
+                }
+            }
+        } else if (index == maze!.orderChanged.count + 30) {
             // Reset them to black
             for r in 0...rows-1 {
                 for c in 0...cols-1 {
                     squares[r][c].removeAllActions()
-                    squares[r][c].color = .black
+                    squares[r][c].run(SKAction.colorize(with: .black, colorBlendFactor: 1, duration: TimeInterval(delay - 0.75)))
                 }
             }
 
             // Update the maze
             maze = MazeGenerator(rows, cols)
-
-            // Reset the timer
-            index = 0
-        } else {
-            for _ in 1...stepSpeed {
-                if (index < maze!.orderChanged.count) {
-                    let pos = maze!.orderChanged[index]
-
-                    squares[pos.r][pos.c].run(SKAction.colorize(with: DefaultsManager().color, colorBlendFactor: 1, duration: 0.5))
-
-                    index += 1
-                }
-            }
+        } else if (index == maze!.orderChanged.count + Int(delay * 60)) {
+            index = -1
         }
+
+        // Normal proceedings
+        index += 1
     }
 }
