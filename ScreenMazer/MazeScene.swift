@@ -19,6 +19,7 @@ class MazeScene: SKScene {
     var duration: Int = DefaultsManager().duration
     var stepSpeed: Int = 10
     var delay: Int = 2
+    var isPreview: Bool = false
 
     // MARK: -View Class Methods
     // Custom initializer method
@@ -47,6 +48,12 @@ class MazeScene: SKScene {
         }
         squares = []
         squareSize = CGFloat(DefaultsManager().mazeSize)
+        if (isPreview) {
+            squareSize = squareSize / 4
+            if (squareSize < 1) {
+                squareSize = 1
+            }
+        }
         duration = DefaultsManager().duration
 
         // Add a bunch of squares
@@ -54,7 +61,7 @@ class MazeScene: SKScene {
         cols = Int(size.width / squareSize)
         maze = MazeGenerator(rows, cols)
 
-        stepSpeed = (maze!.orderChanged.count) / (duration * 25)
+        stepSpeed = (maze!.orderChanged.count) / (duration * 40)
         if stepSpeed < 1 { stepSpeed = 1 }
 
         for r in 0...rows-1 {

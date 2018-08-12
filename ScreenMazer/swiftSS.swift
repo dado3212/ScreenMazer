@@ -35,6 +35,7 @@ class swiftSS: ScreenSaverView {
         //Create the scene and add it to the view
         mazeScene = MazeScene(size: self.bounds.size)
         mazeScene!.scaleMode = .aspectFill
+        mazeScene!.isPreview = isPreview
         view.presentScene(mazeScene)
 
         //add it in as a subview

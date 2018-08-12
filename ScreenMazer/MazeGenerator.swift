@@ -44,7 +44,7 @@ class MazeGenerator {
     func timeToArray() -> [[Int]] {
         // Get the time in String format
         let dateFormatter : DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = DefaultsManager().hourClock ? "HH:mm" : "hh:mm"
         let date = Date()
         let dateString = dateFormatter.string(from: date)
         print(dateString)
