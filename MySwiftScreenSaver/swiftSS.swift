@@ -28,30 +28,18 @@ class swiftSS: ScreenSaverView {
         let view: SKView = SKView(frame: self.bounds)
 
         //Create the scene and add it to the view
-        let scene: SKScene = SKScene(size: self.bounds.size)
+        let scene: SKScene = MazeScene(size: self.bounds.size)
         scene.scaleMode = .aspectFill
         view.presentScene(scene)
 
         //Add something to it!
-        let board = SKNode()
-
-        // Add a bunch of squares
-        for i in 1...3 {
-            let square = SKSpriteNode()
-            square.color = .white
-            square.size = CGSize(width: 30, height: 30)
-            square.anchorPoint = CGPoint(x: 0, y: 1)
-
-            square.position = CGPoint(x: i * 30 + 150, y: 30)
-
-            scene.addChild(square)
-        }
-
-        let redBox: SKSpriteNode = SKSpriteNode(color: .red, size:CGSize(width: 300, height: 300))
-        redBox.position = CGPoint(x: 512, y: 384)
-        redBox.run(SKAction.repeatForever(SKAction.rotate(byAngle: 6, duration: 2)))
-        scene.addChild(redBox)
         
+//
+//        let redBox: SKSpriteNode = SKSpriteNode(color: .red, size:CGSize(width: 300, height: 300))
+//        redBox.position = CGPoint(x: 512, y: 384)
+//        redBox.run(SKAction.repeatForever(SKAction.rotate(byAngle: 6, duration: 2)))
+//        scene.addChild(redBox)
+
         //add it in as a subview
         self.addSubview(view)
     }
