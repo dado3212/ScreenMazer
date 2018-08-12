@@ -108,6 +108,8 @@ class MazeGenerator {
     var end: Square
     var target: Square
 
+    var solution: [Square] = []
+
     init(_ rows: Int, _ cols: Int) {
         self.rows = rows
         self.cols = cols
@@ -119,7 +121,7 @@ class MazeGenerator {
         let endingR = rows - (rows % 2 == 0 ? 3 : 2)
         let endingC = cols - (cols % 2 == 0 ? 2 : 1)
         end = Square(endingR, endingC)
-        target = Square(endingR, endingC - 3)
+        target = Square(endingR, endingC - 1)
 
         blocked = Array(repeating: Array(repeating: 1, count: cols), count: rows)
         blocked[startingR][startingC] = 0
@@ -148,11 +150,19 @@ class MazeGenerator {
         createMaze()
         orderChanged.append(start)
         orderChanged.append(end)
+
+        // Solve the maze
+        var curr: Square? = end
+        while (curr != nil) {
+            solution.insert(curr!, at: 0)
+            curr = curr!.prev
+        }
     }
 
     func createMaze() {
         var possibleDirections: String
-        var pos: Square = start
+        var pos: Square = Square(1, 1)
+        pos.prev = start
 
         var moves: [Square] = [pos]
 
@@ -232,9 +242,9 @@ class MazeGenerator {
                     break;
                 }
 
-                if (first == target) {
+                if (first == target && end.prev == nil) {
                     end.prev = first
-                } else if (second == target) {
+                } else if (second == target && end.prev == nil) {
                     end.prev = second
                 }
 

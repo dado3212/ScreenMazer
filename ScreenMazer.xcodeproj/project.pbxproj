@@ -18,7 +18,6 @@
 		A8B6825621204AFB0086CF0F /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6825521204AFB0086CF0F /* DefaultsManager.swift */; };
 		A8B6825821204B110086CF0F /* ConfigureSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6825721204B110086CF0F /* ConfigureSheetController.swift */; };
 		A8B6825A2120518C0086CF0F /* ConfigureSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8B682592120518C0086CF0F /* ConfigureSheet.xib */; };
-		A8B6825C2120BB940086CF0F /* MazeSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6825B2120BB940086CF0F /* MazeSolver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +33,6 @@
 		A8B6825521204AFB0086CF0F /* DefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
 		A8B6825721204B110086CF0F /* ConfigureSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureSheetController.swift; sourceTree = "<group>"; };
 		A8B682592120518C0086CF0F /* ConfigureSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigureSheet.xib; sourceTree = "<group>"; };
-		A8B6825B2120BB940086CF0F /* MazeSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeSolver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +71,6 @@
 				A8B68249212029220086CF0F /* MazeGenerator.swift */,
 				A89B9C512120CFFA00CE35AC /* Extensions.swift */,
 				A89B9C4F2120CF4700CE35AC /* Square.swift */,
-				A8B6825B2120BB940086CF0F /* MazeSolver.swift */,
 				A8B6825521204AFB0086CF0F /* DefaultsManager.swift */,
 				A8B6825721204B110086CF0F /* ConfigureSheetController.swift */,
 				A8B682592120518C0086CF0F /* ConfigureSheet.xib */,
@@ -174,7 +171,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FD2A7C11D21DCF700939756 /* swiftSS.swift in Sources */,
-				A8B6825C2120BB940086CF0F /* MazeSolver.swift in Sources */,
 				A8B6825621204AFB0086CF0F /* DefaultsManager.swift in Sources */,
 				A89B9C522120CFFA00CE35AC /* Extensions.swift in Sources */,
 				A89B9C502120CF4700CE35AC /* Square.swift in Sources */,

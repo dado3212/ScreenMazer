@@ -11,15 +11,21 @@ import SpriteKit
 
 class MazeScene: SKScene {
     var maze: MazeGenerator?
-    var solved: MazeSolver?
+
     var rows: Int = 10
     var cols: Int = 10
-    var index = 0
-    var squares: [[SKSpriteNode]] = []
     var squareSize: CGFloat = CGFloat(DefaultsManager().mazeSize)
+
+    var squares: [[SKSpriteNode]] = []
+
     var duration: Int = DefaultsManager().duration
     var stepSpeed: Int = 10
+    var solveSpeed: Int = 5
+
     var delay: Double = 2.5
+    var pause: Int = -1
+    var index = 0
+
     var isPreview: Bool = false
 
     // MARK: -View Class Methods
@@ -61,13 +67,14 @@ class MazeScene: SKScene {
         rows = Int(size.height / squareSize)
         cols = Int(size.width / squareSize)
         maze = MazeGenerator(rows, cols)
-        solved = MazeSolver(maze!)
 
         let bottomOffset = (size.height - CGFloat(rows) * squareSize) / 2
         let leftOffset = (size.width - CGFloat(cols) * squareSize) / 2
 
         stepSpeed = (rows * cols) / (duration * 40)
         if stepSpeed < 1 { stepSpeed = 1 }
+        solveSpeed = stepSpeed / 2
+        if solveSpeed < 1 { solveSpeed = 1 }
 
         for r in 0...rows-1 {
             squares.append([])
@@ -91,6 +98,23 @@ class MazeScene: SKScene {
             return
         }
 
+        if (pause > 0) {
+            pause -= 1
+            return
+        } else if (pause == 0) {
+            pause = -1
+            index += 1
+        }
+
+        if (index == maze!.orderChanged.count) {
+            pause = 60
+            return
+        } else if (index == maze!.orderChanged.count + maze!.solution.count) {
+            pause = 60
+            return
+        }
+
+        // Drawing the original maze and time
         if (index < maze!.orderChanged.count) {
             for i in 1...stepSpeed {
                 if (index < maze!.orderChanged.count) {
@@ -100,33 +124,37 @@ class MazeScene: SKScene {
                     squares[pos.r][pos.c].run(SKAction.colorize(with: DefaultsManager().color, colorBlendFactor: 1, duration: 0.5))
 
                     index += (i == stepSpeed ? 0 : 1)
+                } else {
+                    index -= 1
                 }
             }
-        // Short delay
-        } else if (index > maze!.orderChanged.count + 30 && index < maze!.orderChanged.count + 30 + solved!.solution.count) {
-            for i in 1...stepSpeed {
-                if (index < maze!.orderChanged.count + 30 + solved!.solution.count) {
-                    let pos = solved!.solution[index - maze!.orderChanged.count - 30]
+        // Drawing the solution
+        } else if (index < maze!.orderChanged.count + maze!.solution.count) {
+            for i in 1...solveSpeed {
+                if (index < maze!.orderChanged.count + maze!.solution.count) {
+                    let pos = maze!.solution[index - maze!.orderChanged.count]
 
                     squares[pos.r][pos.c].removeAllActions()
                     squares[pos.r][pos.c].run(SKAction.colorize(with: .white, colorBlendFactor: 1, duration: 0.5))
 
                     index += (i == stepSpeed ? 0 : 1)
+                } else {
+                    index -= 1
                 }
             }
-        } else if (index == maze!.orderChanged.count + solved!.solution.count + 60) {
+        // Resetting to black
+        } else {
             // Reset them to black
             for r in 0...rows-1 {
                 for c in 0...cols-1 {
                     squares[r][c].removeAllActions()
-                    squares[r][c].run(SKAction.colorize(with: .black, colorBlendFactor: 1, duration: TimeInterval(delay - 0.75)))
+                    squares[r][c].color = .black
+                    // squares[r][c].run(SKAction.colorize(with: .black, colorBlendFactor: 1, duration: TimeInterval(delay - 0.75)))
                 }
             }
 
             // Update the maze
             maze = MazeGenerator(rows, cols)
-            solved = MazeSolver(maze!)
-        } else if (index == maze!.orderChanged.count + solved!.solution.count + Int((delay + 1) * 60)) {
             index = -1
         }
 
