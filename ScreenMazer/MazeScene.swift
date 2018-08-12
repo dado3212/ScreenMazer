@@ -61,6 +61,9 @@ class MazeScene: SKScene {
         cols = Int(size.width / squareSize)
         maze = MazeGenerator(rows, cols)
 
+        let bottomOffset = (size.height - CGFloat(rows) * squareSize) / 2
+        let leftOffset = (size.width - CGFloat(cols) * squareSize) / 2
+
         stepSpeed = (rows * cols) / (duration * 40)
         if stepSpeed < 1 { stepSpeed = 1 }
 
@@ -72,7 +75,7 @@ class MazeScene: SKScene {
                 square.size = CGSize(width: squareSize, height: squareSize)
                 square.anchorPoint = CGPoint(x: 0, y: 1)
 
-                square.position = CGPoint(x: CGFloat(c) * squareSize, y: CGFloat(r) * squareSize + squareSize)
+                square.position = CGPoint(x: CGFloat(c) * squareSize + leftOffset, y: CGFloat(r) * squareSize + squareSize + bottomOffset)
 
                 squares[r].append(square)
 
