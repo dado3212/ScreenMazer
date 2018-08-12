@@ -106,6 +106,7 @@ class MazeGenerator {
 
     var start: Square
     var end: Square
+    var target: Square
 
     init(_ rows: Int, _ cols: Int) {
         self.rows = rows
@@ -118,6 +119,7 @@ class MazeGenerator {
         let endingR = rows - (rows % 2 == 0 ? 3 : 2)
         let endingC = cols - (cols % 2 == 0 ? 2 : 1)
         end = Square(endingR, endingC)
+        target = Square(endingR, endingC - 3)
 
         blocked = Array(repeating: Array(repeating: 1, count: cols), count: rows)
         blocked[startingR][startingC] = 0
@@ -174,15 +176,17 @@ class MazeGenerator {
             }
 
             // Check if found any possible movements
+            var first: Square = Square(0,0)
+            var second: Square = Square(0,0)
             if (possibleDirections.count > 0) {
                 switch (possibleDirections.random()) {
                 case UP: // North
                     blocked[pos.r - 1][pos.c] = 0
                     blocked[pos.r - 2][pos.c] = 0
-                    let first = Square(pos.r - 1, pos.c)
-                    pos.nextTo(first)
-                    let second = Square(pos.r - 2, pos.c)
-                    first.nextTo(second)
+                    first = Square(pos.r - 1, pos.c)
+                    first.prev = pos
+                    second = Square(pos.r - 2, pos.c)
+                    second.prev = first
                     orderChanged.append(first)
                     orderChanged.append(second)
                     pos = second
@@ -191,10 +195,10 @@ class MazeGenerator {
                 case DOWN: // South
                     blocked[pos.r + 1][pos.c] = 0
                     blocked[pos.r + 2][pos.c] = 0
-                    let first = Square(pos.r + 1, pos.c)
-                    pos.nextTo(first)
-                    let second = Square(pos.r + 2, pos.c)
-                    first.nextTo(second)
+                    first = Square(pos.r + 1, pos.c)
+                    first.prev = pos
+                    second = Square(pos.r + 2, pos.c)
+                    second.prev = first
                     orderChanged.append(first)
                     orderChanged.append(second)
                     pos = second
@@ -203,10 +207,10 @@ class MazeGenerator {
                 case LEFT: // West
                     blocked[pos.r][pos.c - 1] = 0
                     blocked[pos.r][pos.c - 2] = 0
-                    let first = Square(pos.r, pos.c - 1)
-                    pos.nextTo(first)
-                    let second = Square(pos.r, pos.c - 2)
-                    first.nextTo(second)
+                    first = Square(pos.r, pos.c - 1)
+                    first.prev = pos
+                    second = Square(pos.r, pos.c - 2)
+                    second.prev = first
                     orderChanged.append(first)
                     orderChanged.append(second)
                     pos = second
@@ -215,10 +219,10 @@ class MazeGenerator {
                 case RIGHT: // East
                     blocked[pos.r][pos.c + 1] = 0
                     blocked[pos.r][pos.c + 2] = 0
-                    let first = Square(pos.r, pos.c + 1)
-                    pos.nextTo(first)
-                    let second = Square(pos.r, pos.c + 2)
-                    first.nextTo(second)
+                    first = Square(pos.r, pos.c + 1)
+                    first.prev = pos
+                    second = Square(pos.r, pos.c + 2)
+                    second.prev = first
                     orderChanged.append(first)
                     orderChanged.append(second)
                     pos = second
@@ -226,6 +230,12 @@ class MazeGenerator {
 
                 default:
                     break;
+                }
+
+                if (first == target) {
+                    end.prev = first
+                } else if (second == target) {
+                    end.prev = second
                 }
 
                 // Add a new possible movement
