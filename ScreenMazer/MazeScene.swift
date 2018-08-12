@@ -15,7 +15,7 @@ class MazeScene: SKScene {
     var cols: Int = 10
     var index = 0
     var squares: [[SKSpriteNode]] = []
-    var squareSize: CGFloat = CGFloat(DefaultsManager().size)
+    var squareSize: CGFloat = CGFloat(DefaultsManager().mazeSize)
     var duration: Int = DefaultsManager().duration
     var stepSpeed: Int = 10
     var delay: Int = 2
@@ -38,6 +38,17 @@ class MazeScene: SKScene {
     }
 
     func generateMaze() {
+        // Clear everything
+        index = 0
+        for s in squares {
+            for square in s {
+                square.removeFromParent()
+            }
+        }
+        squares = []
+        squareSize = CGFloat(DefaultsManager().mazeSize)
+        duration = DefaultsManager().duration
+
         // Add a bunch of squares
         rows = Int(size.height / squareSize)
         cols = Int(size.width / squareSize)

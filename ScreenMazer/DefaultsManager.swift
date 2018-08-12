@@ -34,12 +34,30 @@ class DefaultsManager {
         }
     }
 
-    var size: Int {
+    var mazeSize: Double {
         set(newSize) {
-            setAttribute(newSize, key: "size")
+            setAttribute(newSize, key: "mazeSize")
         }
         get {
-            return getSize() ?? 10
+            return getMazeSize() ?? 10.0
+        }
+    }
+
+    var clockSize: Int {
+        set(newSize) {
+            setAttribute(newSize, key: "clockSize")
+        }
+        get {
+            return getClockSize() ?? 2
+        }
+    }
+
+    var hourClock: Bool {
+        set(newClock) {
+            setAttribute(newClock, key: "hourClock")
+        }
+        get {
+            return getHourClock() ?? false
         }
     }
 
@@ -62,9 +80,23 @@ class DefaultsManager {
         return nil
     }
 
-    func getSize() -> Int? {
-        if let info = defaults.object(forKey: "size") as? Data {
+    func getMazeSize() -> Double? {
+        if let info = defaults.object(forKey: "mazeSize") as? Data {
+            return NSKeyedUnarchiver.unarchiveObject(with: info) as? Double
+        }
+        return nil
+    }
+
+    func getClockSize() -> Int? {
+        if let info = defaults.object(forKey: "clockSize") as? Data {
             return NSKeyedUnarchiver.unarchiveObject(with: info) as? Int
+        }
+        return nil
+    }
+
+    func getHourClock() -> Bool? {
+        if let info = defaults.object(forKey: "hourClock") as? Data {
+            return NSKeyedUnarchiver.unarchiveObject(with: info) as? Bool
         }
         return nil
     }

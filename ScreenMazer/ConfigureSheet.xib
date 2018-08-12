@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ConfigureSheetController" customModule="ScreenMazer" customModuleProvider="target">
+            <connections>
+                <outlet property="canvasColorWell" destination="gt4-XW-IhQ" id="Qkh-Dd-Ph3"/>
+                <outlet property="clockSize" destination="QV8-Vj-O9b" id="HfM-1a-dPn"/>
+                <outlet property="duration" destination="MHw-Gb-q5c" id="yFa-5m-FBb"/>
+                <outlet property="hourClock" destination="hHh-eQ-FfN" id="hxu-xb-X8p"/>
+                <outlet property="mazeSize" destination="6RY-0F-xuU" id="Dh4-kM-ENT"/>
+                <outlet property="text" destination="mnS-7s-jNU" id="6hz-K3-Hly"/>
+                <outlet property="window" destination="QvC-M9-y7g" id="t14-la-H7W"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="ScreenMazer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="266" height="261"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <view key="contentView" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="266" height="257"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="syD-V6-hat">
+                        <rect key="frame" x="18" y="215" width="77" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="QcZ-s6-cYH"/>
+                        </constraints>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Maze Color" id="Fx3-ie-87z">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="gt4-XW-IhQ">
+                        <rect key="frame" x="176" y="211" width="60" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="9e1-v5-2Ua"/>
+                            <constraint firstAttribute="width" constant="60" id="LXk-MH-a0c"/>
+                        </constraints>
+                        <color key="color" red="0.69123241402651436" green="0.8785381217277487" blue="0.30508141578484366" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <action selector="colorFinished:" target="-2" id="3Q4-3o-6Af"/>
+                        </connections>
+                    </colorWell>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A9v-nk-RP9">
+                        <rect key="frame" x="27" y="178" width="60" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="XZc-uV-nKR"/>
+                        </constraints>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Duration" id="0gf-w7-FZ9">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RNO-dD-1vc">
+                        <rect key="frame" x="22" y="141" width="70" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="hip-Iu-ltG"/>
+                        </constraints>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Maze Size" id="NDW-z2-3Wd">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MHw-Gb-q5c">
+                        <rect key="frame" x="184" y="178" width="45" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="XUF-Va-7Cr"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="BDT-eO-flS">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="oZa-Bw-kbT"/>
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="durationFinished:" target="-2" id="qEW-ks-vhL"/>
+                        </connections>
+                    </textField>
+                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6RY-0F-xuU">
+                        <rect key="frame" x="159" y="143" width="96" height="19"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="92" id="462-4k-JiJ"/>
+                        </constraints>
+                        <sliderCell key="cell" state="on" alignment="left" minValue="2" maxValue="15" doubleValue="10" tickMarkPosition="above" sliderType="linear" id="Flj-sx-tsC"/>
+                        <connections>
+                            <action selector="mazeSizeFinished:" target="-2" id="mPH-ng-jdk"/>
+                        </connections>
+                    </slider>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jZb-Ke-RkX">
+                        <rect key="frame" x="21" y="104" width="72" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="ANu-gK-5gN"/>
+                        </constraints>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Clock Size" id="cpN-XC-Vex">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UUd-Do-3v8">
+                        <rect key="frame" x="19" y="67" width="76" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="XE9-6w-UKp"/>
+                        </constraints>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="24-hr Time" id="5AS-VA-PaE">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QV8-Vj-O9b">
+                        <rect key="frame" x="159" y="102" width="96" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="92" id="u4M-IH-7QL"/>
+                        </constraints>
+                        <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="3" doubleValue="2" tickMarkPosition="above" numberOfTickMarks="3" sliderType="linear" id="TGn-Hk-OEK"/>
+                        <connections>
+                            <action selector="clockSizeFinished:" target="-2" id="xwg-UP-A31"/>
+                        </connections>
+                    </slider>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hHh-eQ-FfN">
+                        <rect key="frame" x="195" y="69" width="22" height="18"/>
+                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="7Ri-ZP-h76">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="clockFinished:" target="-2" id="C4r-Zh-KQc"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lsB-4d-KwF">
+                        <rect key="frame" x="160" y="13" width="92" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="bI1-BY-gUk"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ygf-Qk-bkW">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="closeConfigureSheet:" target="-2" id="D8m-7x-6Cs"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="A9v-nk-RP9" firstAttribute="centerX" secondItem="syD-V6-hat" secondAttribute="centerX" id="1Ih-a1-Yec"/>
+                    <constraint firstAttribute="trailing" secondItem="gt4-XW-IhQ" secondAttribute="trailing" constant="30" id="7WB-9n-NJe"/>
+                    <constraint firstItem="jZb-Ke-RkX" firstAttribute="top" secondItem="RNO-dD-1vc" secondAttribute="bottom" constant="15" id="9eL-Ma-ocp"/>
+                    <constraint firstItem="lsB-4d-KwF" firstAttribute="top" secondItem="hHh-eQ-FfN" secondAttribute="bottom" constant="30" id="Ap7-0f-3h4"/>
+                    <constraint firstItem="6RY-0F-xuU" firstAttribute="centerX" secondItem="MHw-Gb-q5c" secondAttribute="centerX" id="DNE-LU-Skm"/>
+                    <constraint firstItem="syD-V6-hat" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="Dta-4c-z6X"/>
+                    <constraint firstItem="gt4-XW-IhQ" firstAttribute="centerX" secondItem="MHw-Gb-q5c" secondAttribute="centerX" id="El1-IU-EIo"/>
+                    <constraint firstItem="syD-V6-hat" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="TOb-zy-tg6"/>
+                    <constraint firstItem="hHh-eQ-FfN" firstAttribute="centerX" secondItem="MHw-Gb-q5c" secondAttribute="centerX" id="UVZ-49-hli"/>
+                    <constraint firstItem="UUd-Do-3v8" firstAttribute="centerX" secondItem="syD-V6-hat" secondAttribute="centerX" id="Ula-lN-nP8"/>
+                    <constraint firstAttribute="trailing" secondItem="lsB-4d-KwF" secondAttribute="trailing" constant="20" id="WUx-gc-bBc"/>
+                    <constraint firstItem="UUd-Do-3v8" firstAttribute="top" secondItem="jZb-Ke-RkX" secondAttribute="bottom" constant="15" id="Xvh-aW-9sb"/>
+                    <constraint firstItem="MHw-Gb-q5c" firstAttribute="centerY" secondItem="A9v-nk-RP9" secondAttribute="centerY" id="e8Q-Rq-jSb"/>
+                    <constraint firstItem="RNO-dD-1vc" firstAttribute="top" secondItem="A9v-nk-RP9" secondAttribute="bottom" constant="15" id="ewm-N5-dnz"/>
+                    <constraint firstAttribute="bottom" secondItem="lsB-4d-KwF" secondAttribute="bottom" constant="20" id="fde-yI-F3T"/>
+                    <constraint firstItem="gt4-XW-IhQ" firstAttribute="centerY" secondItem="syD-V6-hat" secondAttribute="centerY" id="jyd-bK-NXv"/>
+                    <constraint firstItem="jZb-Ke-RkX" firstAttribute="centerX" secondItem="syD-V6-hat" secondAttribute="centerX" id="ly3-RA-yJM"/>
+                    <constraint firstItem="QV8-Vj-O9b" firstAttribute="centerY" secondItem="jZb-Ke-RkX" secondAttribute="centerY" id="mnS-7s-jNU"/>
+                    <constraint firstItem="hHh-eQ-FfN" firstAttribute="centerY" secondItem="UUd-Do-3v8" secondAttribute="centerY" id="o7V-y0-p8h"/>
+                    <constraint firstItem="QV8-Vj-O9b" firstAttribute="centerX" secondItem="MHw-Gb-q5c" secondAttribute="centerX" id="opZ-Ma-45p"/>
+                    <constraint firstItem="6RY-0F-xuU" firstAttribute="centerY" secondItem="RNO-dD-1vc" secondAttribute="centerY" id="pIM-yC-OXd"/>
+                    <constraint firstItem="A9v-nk-RP9" firstAttribute="top" secondItem="syD-V6-hat" secondAttribute="bottom" constant="15" id="riH-v1-T4X"/>
+                    <constraint firstItem="RNO-dD-1vc" firstAttribute="centerX" secondItem="syD-V6-hat" secondAttribute="centerX" id="xiA-AS-MJk"/>
+                </constraints>
+            </view>
+            <point key="canvasLocation" x="387" y="537.5"/>
+        </window>
+    </objects>
+</document>

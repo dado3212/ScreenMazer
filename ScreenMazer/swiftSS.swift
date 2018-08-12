@@ -11,7 +11,9 @@ import SpriteKit
 
 class swiftSS: ScreenSaverView {
     var defaultsManager: DefaultsManager = DefaultsManager()
-    // lazy var sheetController: ConfigureSheetController = ConfigureSheetController()
+    lazy var sheetController: ConfigureSheetController = ConfigureSheetController()
+
+    var mazeScene: MazeScene?
 
     override init?(frame: NSRect, isPreview: Bool) {
         
@@ -31,9 +33,9 @@ class swiftSS: ScreenSaverView {
         let view: SKView = SKView(frame: self.bounds)
 
         //Create the scene and add it to the view
-        let scene: SKScene = MazeScene(size: self.bounds.size)
-        scene.scaleMode = .aspectFill
-        view.presentScene(scene)
+        mazeScene = MazeScene(size: self.bounds.size)
+        mazeScene!.scaleMode = .aspectFill
+        view.presentScene(mazeScene)
 
         //add it in as a subview
         self.addSubview(view)
@@ -44,8 +46,13 @@ class swiftSS: ScreenSaverView {
     }
 
     override func configureSheet() -> NSWindow? {
-        return nil
-        // return sheetController.window
+        sheetController.callback = { _ in
+            if ((self.mazeScene) != nil) {
+                // Re-trigger the setup for the maze
+                self.mazeScene?.generateMaze()
+            }
+        }
+        return sheetController.window
     }
 
     required init?(coder: NSCoder) {
