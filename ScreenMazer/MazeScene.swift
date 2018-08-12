@@ -97,17 +97,24 @@ class MazeScene: SKScene {
                     let pos = maze!.orderChanged[index]
 
                     squares[pos.r][pos.c].removeAllActions()
-                    // squares[pos.r][pos.c].run(SKAction.colorize(with: DefaultsManager().color, colorBlendFactor: 1, duration: 0.5))
-                    if solved!.solution[pos.r][pos.c] == 4 {
-                        squares[pos.r][pos.c].run(SKAction.colorize(with: .white, colorBlendFactor: 1, duration: 0.5))
-                    } else {
-                        squares[pos.r][pos.c].run(SKAction.colorize(with: DefaultsManager().color, colorBlendFactor: 1, duration: 0.5))
-                    }
+                    squares[pos.r][pos.c].run(SKAction.colorize(with: DefaultsManager().color, colorBlendFactor: 1, duration: 0.5))
 
                     index += (i == stepSpeed ? 0 : 1)
                 }
             }
-        } else if (index == maze!.orderChanged.count + 30) {
+        // Short delay
+        } else if (index > maze!.orderChanged.count + 30 && index < maze!.orderChanged.count + 30 + solved!.solution.count) {
+            for i in 1...stepSpeed {
+                if (index < maze!.orderChanged.count + 30 + solved!.solution.count) {
+                    let pos = solved!.solution[index - maze!.orderChanged.count - 30]
+
+                    squares[pos.r][pos.c].removeAllActions()
+                    squares[pos.r][pos.c].run(SKAction.colorize(with: .white, colorBlendFactor: 1, duration: 0.5))
+
+                    index += (i == stepSpeed ? 0 : 1)
+                }
+            }
+        } else if (index == maze!.orderChanged.count + solved!.solution.count + 60) {
             // Reset them to black
             for r in 0...rows-1 {
                 for c in 0...cols-1 {
@@ -119,7 +126,7 @@ class MazeScene: SKScene {
             // Update the maze
             maze = MazeGenerator(rows, cols)
             solved = MazeSolver(maze!)
-        } else if (index == maze!.orderChanged.count + Int(delay * 60)) {
+        } else if (index == maze!.orderChanged.count + solved!.solution.count + Int((delay + 1) * 60)) {
             index = -1
         }
 
