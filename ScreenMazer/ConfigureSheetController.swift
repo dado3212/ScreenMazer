@@ -14,24 +14,33 @@ class ConfigureSheetController : NSObject {
 
     @IBOutlet var window: NSWindow?
     @IBOutlet var canvasColorWell: NSColorWell?
+    @IBOutlet var solveColorWell: NSColorWell!
     @IBOutlet var duration: NSTextField!
     @IBOutlet var mazeSize: NSSlider!
     @IBOutlet var clockSize: NSSlider!
     @IBOutlet var hourClock: NSButton!
+    @IBOutlet var solveCheck: NSButton!
 
     override init() {
         super.init()
         let myBundle = Bundle(for: ConfigureSheetController.self)
         myBundle.loadNibNamed("ConfigureSheet", owner: self, topLevelObjects: nil)
         canvasColorWell!.color = defaultsManager.color
+        solveColorWell.color = defaultsManager.solveColor
         duration.stringValue = String(defaultsManager.duration)
         mazeSize.doubleValue = Double(defaultsManager.mazeSize)
         clockSize.doubleValue = Double(defaultsManager.clockSize)
         hourClock.state = defaultsManager.hourClock ? NSControlStateValueOn : NSControlStateValueOff
+        solveCheck.state = defaultsManager.solve ? NSControlStateValueOn : NSControlStateValueOff
     }
 
     @IBAction func colorFinished(_ sender: Any) {
         defaultsManager.color = canvasColorWell!.color
+        callback?()
+    }
+
+    @IBAction func solveColorFinished(_ sender: Any) {
+        defaultsManager.solveColor = solveColorWell.color
         callback?()
     }
 
@@ -52,6 +61,11 @@ class ConfigureSheetController : NSObject {
 
     @IBAction func clockFinished(_ sender: Any) {
         defaultsManager.hourClock = (hourClock.state == NSControlStateValueOn)
+        callback?()
+    }
+
+    @IBAction func solveFinished(_ sender: Any) {
+        defaultsManager.solve = (solveCheck.state == NSControlStateValueOn)
         callback?()
     }
 

@@ -22,16 +22,21 @@ var digits: [String: String] = [
     ":": "000010000010000",
 ]
 
-func timeToArray() -> [[Int]] {
+func timeToArray(_ override: String? = nil) -> [[Int]] {
     let defaults = DefaultsManager()
     let clockSize = defaults.clockSize
 
     // Get the time in String format
-    let dateFormatter : DateFormatter = DateFormatter()
-    dateFormatter.dateFormat = defaults.hourClock ? "HH:mm" : "hh:mm"
-    let date = Date()
-    let dateString = dateFormatter.string(from: date)
-    print(dateString)
+    var dateString = ""
+    if (override == nil) {
+        let dateFormatter : DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = defaults.hourClock ? "HH:mm" : "hh:mm"
+        let date = Date()
+        dateString = dateFormatter.string(from: date)
+        print(dateString)
+    } else {
+        dateString = override!
+    }
 
     var output: [[Int]] = Array(repeating: [], count: 5 * clockSize)
 
@@ -128,7 +133,7 @@ class MazeGenerator {
         blocked[endingR][endingC] = 0
 
         // Create time block
-        let timeBools = timeToArray()
+        let timeBools = timeToArray("\(cols * rows)")
         // Center it
         let topOffset = rows / 2 - timeBools.count / 2
         let leftOffset = cols / 2 - timeBools[0].count / 2

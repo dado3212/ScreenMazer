@@ -25,6 +25,15 @@ class DefaultsManager {
         }
     }
 
+    var solveColor: NSColor {
+        set(newColor) {
+            setAttribute(newColor, key: "solveColor")
+        }
+        get {
+            return getSolveColor() ?? .white
+        }
+    }
+
     var duration: Int {
         set(newDuration) {
             setAttribute(newDuration, key: "duration")
@@ -61,6 +70,15 @@ class DefaultsManager {
         }
     }
 
+    var solve: Bool {
+        set(newSolve) {
+            setAttribute(newSolve, key: "solve")
+        }
+        get {
+            return getSolve() ?? true
+        }
+    }
+
     func setAttribute(_ attribute: Any, key: String) {
         defaults.set(NSKeyedArchiver.archivedData(withRootObject: attribute), forKey: key)
         defaults.synchronize()
@@ -68,6 +86,13 @@ class DefaultsManager {
 
     func getColor() -> NSColor? {
         if let info = defaults.object(forKey: "color") as? Data {
+            return NSKeyedUnarchiver.unarchiveObject(with: info) as? NSColor
+        }
+        return nil
+    }
+
+    func getSolveColor() -> NSColor? {
+        if let info = defaults.object(forKey: "solveColor") as? Data {
             return NSKeyedUnarchiver.unarchiveObject(with: info) as? NSColor
         }
         return nil
@@ -101,5 +126,10 @@ class DefaultsManager {
         return nil
     }
 
-
+    func getSolve() -> Bool? {
+        if let info = defaults.object(forKey: "solve") as? Data {
+            return NSKeyedUnarchiver.unarchiveObject(with: info) as? Bool
+        }
+        return nil
+    }
 }

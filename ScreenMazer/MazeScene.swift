@@ -19,8 +19,10 @@ class MazeScene: SKScene {
     var squares: [[SKSpriteNode]] = []
 
     var duration: Int = DefaultsManager().duration
-    var stepSpeed: Int = 10
+    var lastUpdateTime = 0.0
+    var d = 0.0
     var solveSpeed: Int = 5
+    var solve: Bool = true
 
     var delay: Double = 2.5
     var pause: Int = -1
@@ -71,10 +73,8 @@ class MazeScene: SKScene {
         let bottomOffset = (size.height - CGFloat(rows) * squareSize) / 2
         let leftOffset = (size.width - CGFloat(cols) * squareSize) / 2
 
-        stepSpeed = (rows * cols) / (duration * 40)
-        if stepSpeed < 1 { stepSpeed = 1 }
-        solveSpeed = stepSpeed / 2
-        if solveSpeed < 1 { solveSpeed = 1 }
+        solve = DefaultsManager().solve
+        d = Double(maze!.orderChanged.count) / Double(duration)
 
         for r in 0...rows-1 {
             squares.append([])
@@ -98,21 +98,29 @@ class MazeScene: SKScene {
             return
         }
 
+        if (index == maze!.orderChanged.count) {
+            pause = 60
+            index += 1
+            return
+        } else if (solve && index == maze!.orderChanged.count + maze!.solution.count) {
+            pause = 120
+            index += 1
+            return
+        }
+
         if (pause > 0) {
             pause -= 1
             return
         } else if (pause == 0) {
             pause = -1
-            index += 1
+            index -= 1
         }
 
-        if (index == maze!.orderChanged.count) {
-            pause = 60
-            return
-        } else if (index == maze!.orderChanged.count + maze!.solution.count) {
-            pause = 60
-            return
-        }
+        // Calculate step speed
+        let timeSinceLastUpdate = currentTime - lastUpdateTime
+        lastUpdateTime = currentTime
+        var stepSpeed = Int(d * timeSinceLastUpdate)
+        if (stepSpeed < 1) { stepSpeed = 1 }
 
         // Drawing the original maze and time
         if (index < maze!.orderChanged.count) {
@@ -129,15 +137,15 @@ class MazeScene: SKScene {
                 }
             }
         // Drawing the solution
-        } else if (index < maze!.orderChanged.count + maze!.solution.count) {
+        } else if (solve && index < maze!.orderChanged.count + maze!.solution.count) {
             for i in 1...solveSpeed {
                 if (index < maze!.orderChanged.count + maze!.solution.count) {
                     let pos = maze!.solution[index - maze!.orderChanged.count]
 
                     squares[pos.r][pos.c].removeAllActions()
-                    squares[pos.r][pos.c].run(SKAction.colorize(with: .white, colorBlendFactor: 1, duration: 0.5))
+                    squares[pos.r][pos.c].run(SKAction.colorize(with: DefaultsManager().solveColor, colorBlendFactor: 1, duration: 0.5))
 
-                    index += (i == stepSpeed ? 0 : 1)
+                    index += (i == solveSpeed ? 0 : 1)
                 } else {
                     index -= 1
                 }
