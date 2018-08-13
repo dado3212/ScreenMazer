@@ -43,6 +43,15 @@ class DefaultsManager {
         }
     }
 
+    var solveDuration: Int {
+        set(newDuration) {
+            setAttribute(newDuration, key: "solveDuration")
+        }
+        get {
+            return getSolveDuration() ?? 10
+        }
+    }
+
     var mazeSize: Double {
         set(newSize) {
             setAttribute(newSize, key: "mazeSize")
@@ -100,6 +109,13 @@ class DefaultsManager {
 
     func getDuration() -> Int? {
         if let info = defaults.object(forKey: "duration") as? Data {
+            return NSKeyedUnarchiver.unarchiveObject(with: info) as? Int
+        }
+        return nil
+    }
+
+    func getSolveDuration() -> Int? {
+        if let info = defaults.object(forKey: "solveDuration") as? Data {
             return NSKeyedUnarchiver.unarchiveObject(with: info) as? Int
         }
         return nil

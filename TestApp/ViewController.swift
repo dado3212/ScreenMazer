@@ -18,7 +18,7 @@ class ViewController: NSViewController {
         let view: SKView = SKView(frame: self.view.bounds)
 
         //Create the scene and add it to the view
-        var mazeScene = MazeScene(size: self.view.bounds.size)
+        let mazeScene = MazeScene(size: self.view.bounds.size)
         mazeScene.scaleMode = .aspectFill
         mazeScene.isPreview = false
         view.presentScene(mazeScene)

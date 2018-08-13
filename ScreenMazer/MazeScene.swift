@@ -19,12 +19,10 @@ class MazeScene: SKScene {
     var squares: [[SKSpriteNode]] = []
 
     var duration: Int = DefaultsManager().duration
+    var solveDuration: Int = DefaultsManager().solveDuration
     var lastUpdateTime = 0.0
-    var d = 0.0
-    var solveSpeed: Int = 5
     var solve: Bool = true
 
-    var delay: Double = 2.5
     var pause: Int = -1
     var index = 0
 
@@ -74,7 +72,6 @@ class MazeScene: SKScene {
         let leftOffset = (size.width - CGFloat(cols) * squareSize) / 2
 
         solve = DefaultsManager().solve
-        d = Double(maze!.orderChanged.count) / Double(duration)
 
         for r in 0...rows-1 {
             squares.append([])
@@ -98,10 +95,12 @@ class MazeScene: SKScene {
             return
         }
 
+        // Delay for 60 ticks when maze completed
         if (index == maze!.orderChanged.count) {
             pause = 60
             index += 1
             return
+        // Delay for 120 ticks when solution completed
         } else if (solve && index == maze!.orderChanged.count + maze!.solution.count) {
             pause = 120
             index += 1
@@ -116,14 +115,16 @@ class MazeScene: SKScene {
             index -= 1
         }
 
-        // Calculate step speed
+        // Calculate step speeds
         var timeSinceLastUpdate = currentTime - lastUpdateTime
         lastUpdateTime = currentTime
         if (timeSinceLastUpdate > 1) {
             timeSinceLastUpdate = 1.0/60.0
         }
-        var stepSpeed = Int(d * timeSinceLastUpdate)
+        var stepSpeed = Int(Double(maze!.orderChanged.count) / Double(duration) * timeSinceLastUpdate)
         if (stepSpeed < 1) { stepSpeed = 1 }
+        var solveSpeed = Int(Double(maze!.solution.count) / Double(solveDuration) * timeSinceLastUpdate)
+        if (solveSpeed < 1 ) { solveSpeed = 1 }
 
         // Drawing the original maze and time
         if (index < maze!.orderChanged.count) {
@@ -155,18 +156,20 @@ class MazeScene: SKScene {
             }
         // Resetting to black
         } else {
-            // Reset them to black
+            // Reset them to black over 1 sec
             for r in 0...rows-1 {
                 for c in 0...cols-1 {
                     squares[r][c].removeAllActions()
-                    squares[r][c].color = .black
-                    // squares[r][c].run(SKAction.colorize(with: .black, colorBlendFactor: 1, duration: TimeInterval(delay - 0.75)))
+                    // squares[r][c].color = .black
+                    squares[r][c].run(SKAction.colorize(with: .black, colorBlendFactor: 1, duration: 1))
                 }
             }
 
             // Update the maze
             maze = MazeGenerator(rows, cols)
-            index = -1
+
+            pause = 60
+            index = 0
         }
 
         // Normal proceedings

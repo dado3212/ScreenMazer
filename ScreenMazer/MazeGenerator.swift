@@ -31,7 +31,6 @@ func timeToArray() -> [[Int]] {
     dateFormatter.dateFormat = defaults.hourClock ? "HH:mm" : "hh:mm"
     let date = Date()
     let dateString = dateFormatter.string(from: date)
-    print(dateString)
 
     var output: [[Int]] = Array(repeating: [], count: 5 * clockSize)
 

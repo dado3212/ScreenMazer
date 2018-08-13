@@ -17,6 +17,7 @@ class ConfigureSheetController : NSObject {
     @IBOutlet var solveColorWell: NSColorWell!
     @IBOutlet var duration: NSTextField!
     @IBOutlet var mazeSize: NSSlider!
+    @IBOutlet var solveDuration: NSTextField!
     @IBOutlet var clockSize: NSSlider!
     @IBOutlet var hourClock: NSButton!
     @IBOutlet var solveCheck: NSButton!
@@ -28,6 +29,7 @@ class ConfigureSheetController : NSObject {
         canvasColorWell!.color = defaultsManager.color
         solveColorWell.color = defaultsManager.solveColor
         duration.stringValue = String(defaultsManager.duration)
+        solveDuration.stringValue = String(defaultsManager.solveDuration)
         mazeSize.doubleValue = Double(defaultsManager.mazeSize)
         clockSize.doubleValue = Double(defaultsManager.clockSize)
         hourClock.state = defaultsManager.hourClock ? NSControlStateValueOn : NSControlStateValueOff
@@ -48,6 +50,12 @@ class ConfigureSheetController : NSObject {
         defaultsManager.duration = Int(duration.stringValue)!
         callback?()
     }
+
+    @IBAction func solveDurationFinished(_ sender: Any) {
+        defaultsManager.solveDuration = Int(solveDuration.stringValue)!
+        callback?()
+    }
+
 
     @IBAction func mazeSizeFinished(_ sender: Any) {
         defaultsManager.mazeSize = mazeSize.doubleValue
