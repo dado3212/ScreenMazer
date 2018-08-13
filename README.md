@@ -3,13 +3,13 @@
 ScreenMazer is a screensaver for Mac that builds a maze, and then solves it, repetitively.  I had this idea a while back watching some gifs of maze generation, and so I made it!
 
 <p align="center">
-  <video src="sampleMaze.gif" height="100" ><br>
+  <img src="sampleMaze.gif" height="250" ><br>
   <i>Gif of it in action</i>
 </p>
 
 
 <p align="center">
-  <img src="settings.jpg" height="45" ><br>
+  <img src="settings.jpg" height="250" ><br>
   <i>Settings Page</i>
 </p>
 
