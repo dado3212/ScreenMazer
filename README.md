@@ -15,7 +15,7 @@ ScreenMazer is a screensaver for Mac that builds a maze, and then solves it, rep
 
 
 ## Installation:
-1. Download from [this link]() and double click to add it to Settings.  Then customize it!
+1. Download the [latest release](https://github.com/dado3212/screensaver/releases/latest) and double click to add it to Settings.  Then customize it!
 
 Alternatively, you can build it from the source here.
 
