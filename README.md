@@ -3,19 +3,19 @@
 ScreenMazer is a screensaver for Mac that builds a maze, and then solves it, repetitively.  I had this idea a while back watching some gifs of maze generation, and so I made it!
 
 <p align="center">
-  <img src="sampleMaze.gif" height="100" ><br>
+  <img src="sampleMaze.gif" height="250" ><br>
   <i>Gif of it in action</i>
 </p>
 
 
 <p align="center">
-  <img src="settings.jpg" height="45" ><br>
+  <img src="settings.jpg" height="250" ><br>
   <i>Settings Page</i>
 </p>
 
 
 ## Installation:
-1. Download from [this link]() and double click to add it to Settings.  Then customize it!
+1. Download the [latest release](https://github.com/dado3212/screensaver/releases/latest) and double click to add it to Settings.  Then customize it!
 
 Alternatively, you can build it from the source here.
 
