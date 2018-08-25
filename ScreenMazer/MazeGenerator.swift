@@ -22,6 +22,10 @@ var digits: [String: String] = [
     ":": "000010000010000",
 ]
 
+func random(in range: CountableClosedRange<Int>) -> Int {
+    return range.lowerBound + Int(arc4random_uniform(UInt32(range.upperBound - range.lowerBound)))
+}
+
 func timeToArray() -> [[Int]] {
     let defaults = DefaultsManager()
     let clockSize = defaults.clockSize
@@ -128,9 +132,15 @@ class MazeGenerator {
 
         // Create time block
         let timeBools = timeToArray()
+        // Randomly offset it
+        let boundaryWidth = 4
+        let topOffset = random(in: boundaryWidth ... rows - boundaryWidth - timeBools.count)
+        let leftOffset = random(in: boundaryWidth ... cols - boundaryWidth - timeBools[0].count)
+
         // Center it
-        let topOffset = rows / 2 - timeBools.count / 2
-        let leftOffset = cols / 2 - timeBools[0].count / 2
+        // let topOffset = rows / 2 - timeBools.count / 2
+        // let leftOffset = cols / 2 - timeBools[0].count / 2
+
         if (topOffset >= 0 && leftOffset >= 0) {
             for r in 0...timeBools.count-1 {
                 for c in 0...timeBools[0].count-1 {
