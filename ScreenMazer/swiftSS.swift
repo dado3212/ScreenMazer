@@ -35,13 +35,14 @@ class swiftSS: ScreenSaverView {
         //add it in as a subview
         self.addSubview(view)
     }
-
-    override func hasConfigureSheet() -> Bool {
+    
+    override var hasConfigureSheet: Bool {
         return true
     }
 
-    override func configureSheet() -> NSWindow? {
-        sheetController.callback = { _ in
+    override var configureSheet: NSWindow? {
+        
+        sheetController.callback = {
             if ((self.mazeScene) != nil) {
                 // Re-trigger the setup for the maze
                 self.mazeScene?.generateMaze()
