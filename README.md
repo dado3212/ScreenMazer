@@ -19,6 +19,8 @@ ScreenMazer is a screensaver for Mac that builds a maze, and then solves it, rep
 
 Alternatively, you can build it from the source here.
 
+If you're running into Security alerts, they're just from compiling on an older version of XCode. You can override them by going to `Settings` -> `Privacy & Security` and clicking "Open Anway".
+
 ### With Help From
 * [ScreenSaverMinimal](https://github.com/mirkofetter/ScreenSaverMinimal)
 * [ColorClockSaver](https://github.com/edwardloveall/ColorClockSaver)
