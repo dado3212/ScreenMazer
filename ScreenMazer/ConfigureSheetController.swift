@@ -25,15 +25,15 @@ class ConfigureSheetController : NSObject {
     override init() {
         super.init()
         let myBundle = Bundle(for: ConfigureSheetController.self)
-        myBundle.loadNibNamed("ConfigureSheet", owner: self, topLevelObjects: nil)
+        myBundle.loadNibNamed(NSNib.Name("ConfigureSheet"), owner: self, topLevelObjects: nil)
         canvasColorWell!.color = defaultsManager.color
         solveColorWell.color = defaultsManager.solveColor
         duration.stringValue = String(defaultsManager.duration)
         solveDuration.stringValue = String(defaultsManager.solveDuration)
         mazeSize.doubleValue = Double(defaultsManager.mazeSize)
         clockSize.doubleValue = Double(defaultsManager.clockSize)
-        hourClock.state = defaultsManager.hourClock ? NSControlStateValueOn : NSControlStateValueOff
-        solveCheck.state = defaultsManager.solve ? NSControlStateValueOn : NSControlStateValueOff
+        hourClock.state = defaultsManager.hourClock ? .on : .off
+        solveCheck.state = defaultsManager.solve ? .on : .off
     }
 
     @IBAction func colorFinished(_ sender: Any) {
@@ -68,18 +68,18 @@ class ConfigureSheetController : NSObject {
     }
 
     @IBAction func clockFinished(_ sender: Any) {
-        defaultsManager.hourClock = (hourClock.state == NSControlStateValueOn)
+        defaultsManager.hourClock = (hourClock.state == .on)
         callback?()
     }
 
     @IBAction func solveFinished(_ sender: Any) {
-        defaultsManager.solve = (solveCheck.state == NSControlStateValueOn)
+        defaultsManager.solve = (solveCheck.state == .on)
         callback?()
     }
 
-    @IBAction func closeConfigureSheet(_ sender: AnyObject) {        
-        NSColorPanel.shared().close()
-        window?.sheetParent!.endSheet(window!, returnCode: (sender.tag == 1) ? NSModalResponseOK : NSModalResponseCancel)
+    @IBAction func closeConfigureSheet(_ sender: AnyObject) {
+        NSColorPanel.shared.close()
+        window?.sheetParent!.endSheet(window!, returnCode: (sender.tag == 1) ? .OK : .cancel)
     }
 }
 
