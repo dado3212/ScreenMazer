@@ -189,7 +189,7 @@
 					};
 					A89B9C562120F47F00CE35AC = {
 						CreatedOnToolsVersion = 9.2;
-						DevelopmentTeam = K2WR3HLA57;
+						DevelopmentTeam = Y3FG22HM56;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -445,13 +445,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = K2WR3HLA57;
+				DEVELOPMENT_TEAM = Y3FG22HM56;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexbeals.TestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JackDarnell.screenMazer2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -478,13 +478,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = K2WR3HLA57;
+				DEVELOPMENT_TEAM = Y3FG22HM56;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexbeals.TestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JackDarnell.screenMazer2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
