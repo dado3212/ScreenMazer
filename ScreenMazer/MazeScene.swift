@@ -56,10 +56,7 @@ class MazeScene: SKScene {
         squares = []
         squareSize = CGFloat(DefaultsManager().mazeSize)
         if (isPreview) {
-            squareSize = 1 //squareSize / 4
-            if (squareSize < 1) {
-                squareSize = 1
-            }
+            squareSize = 1 
         }
         duration = DefaultsManager().duration
 
