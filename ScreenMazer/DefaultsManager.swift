@@ -9,7 +9,7 @@
 import ScreenSaver
 
 class DefaultsManager {
-    var defaults: UserDefaults
+    var defaults: ScreenSaverDefaults
     
     init() {
         let identifier = Bundle(for: DefaultsManager.self).bundleIdentifier
@@ -99,14 +99,6 @@ class DefaultsManager {
             defaults.synchronize()
         }
     }
-    
-    
-    //    func getColor() -> NSColor? {
-    //        if let info = defaults.object(forKey: "color") as? Data {
-    //            return NSKeyedUnarchiver.unarchiveObject(with: info) as? NSColor
-    //        }
-    //        return nil
-    //    }
     
     func getColor() -> NSColor? {
         if let info = defaults.data(forKey: "color"),
